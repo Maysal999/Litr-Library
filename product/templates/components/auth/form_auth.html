@@ -1,0 +1,6 @@
+<form class="auth-form" method="post">
+    {% csrf_token %}
+    <h3>{{title}}</h3>
+    {{form}}
+    <button type="submit" class="btn btn-primary">Отправить</button>
+  </form>
