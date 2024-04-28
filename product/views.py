@@ -14,19 +14,20 @@ from django.views import generic
 
 # # Create your views here.
 
-from product.models import Product
+# from product.forms import BookForm
+from product.models import  Product
 
 
-def index(request):
-    return render(request,'pages/index.html')
+# def index(request):
+#     return render(request,'pages/index.html')
 
-# class IndexView(generic.ListView):
-#     template_name = 'pages/index.html'
-    # context_object_name = 'cards'
+class IndexView(generic.ListView):
+    template_name = 'pages/index.html'
+    context_object_name = 'cards'
     
-    # def get_queryset(self) -> QuerySet[Any]:
-        # cards = Product.objects.all().order_by('-id')[:3]
-        # return cards
+    def get_queryset(self) -> QuerySet[Any]:
+        cards = Product.objects.all().order_by('-id')[:3]
+        return cards
 
 # # class ShowProductView(generic.DetailView, generic.CreateView):
 # #     model = Product
@@ -90,7 +91,7 @@ def index(request):
         # return reverse_lazy('index')
 class AboutView(generic.ListView):
     template_name = 'pages/about.html'
-    context_object_name = 'cards'
+    context_object_name = 'books'
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -99,7 +100,7 @@ class AboutView(generic.ListView):
 
 class WhyView(generic.ListView):
     template_name = 'pages/why.html'
-    context_object_name = 'cards'
+    context_object_name = 'books'
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -108,7 +109,7 @@ class WhyView(generic.ListView):
     
 class TestimonialView(generic.ListView):
     template_name = 'pages/testimonial.html'
-    context_object_name = 'cards'
+    context_object_name = 'books'
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -116,10 +117,21 @@ class TestimonialView(generic.ListView):
         return context
     
 class ProductView(generic.ListView):
-    template_name = 'pages/about.html'
-    context_object_name = 'cards'
-
+    model = Product
+    template_name = 'pages/product.html'
+    context_object_name = 'books'
+    
+    # form_class = BookForm
+    def get_queryset(self) -> QuerySet[Any]:
+        cards = Product.objects.all().order_by('-id')
+        return cards
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["title"] = 'Книги'
         return context
+    # def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+    #     context = super().get_context_data(**kwargs)
+    #     # context['form_review'] = BookForm()
+    #     context['title'] = 'Книги'
+    #     return context
+    
