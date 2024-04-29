@@ -25,9 +25,26 @@
         <div class="user_option_box">
           <a href="" class="account-link">
             <i class="fa fa-user" aria-hidden="true"></i>
+
+            
+            {% if request.user.authenticate %}
+               <span><a href="{% url 'sign_up' %}">My Account</a></span> 
+              
+            {% endif %}
             <span>
-              My Account
-            </span>
+              <div class="btn-group">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                {{request.user}}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#">Menu item</a></li>
+                  <li><a class="dropdown-item" href="#">Menu item</a></li>
+                  <li><a class="dropdown-item" href="#">Выйты</a></li>
+                </ul>
+              </div>
+              
+           </span>
+            
           </a>
           <a href="" class="cart-link">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>

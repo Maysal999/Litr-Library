@@ -143,3 +143,26 @@ class Author(models.Model):
     def __str__(self):
 
         return f'{self.name}'
+    
+
+
+
+
+class ReviewAuthor(models.Model):
+    """Model definition for ReviewAuthor."""
+    text = models.TextField(verbose_name='текст')
+    user = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='юзер')
+    created = models.DateTimeField(verbose_name='дата создания',auto_now_add=True)
+    
+    # TODO: Define fields here
+
+    class Meta:
+        """Meta definition for ReviewAuthor."""
+
+        verbose_name = 'Отзывы'
+        verbose_name_plural = 'Отзывы'
+
+    def __str__(self):
+        """Unicode representation of ReviewAuthor."""
+        pass
+
