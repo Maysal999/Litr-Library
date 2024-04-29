@@ -1,24 +1,33 @@
-<div class="content d-flex flex-row bd-highlight mb-3">
+<div class="content d-flex flex-row bd-highlight mb-3" >
           
     <div style="width: 500px; padding: 0 50px;" class="image bd-highlight">
-      <img style="width: 100%;" src="{{card.product_media.first.image.url}} " alt="">
+      <img style="width: 100%;" src="{{card.books_media.first.image.url}} " alt="">
       
-      {% for image in card.product_media.all %}
+      {% for image in card.books_media.all %}
       <img style="width: 40px; height: 40px; margin-left:10px; margin-top: 10px;" src="{{image.image.url}}" alt="">
       {% endfor %}
         
     </div>
-    <div class="conteiner d-grid gap-3">
+    <div class="conteiner d-grid gap-3"  >
 
       <div class="v  p-2 bg-light border-bottom">
           <h4>{{card.price}} сом</h4>
       </div>
       <div class="description  p-2 bg-light border-bottom">
           <p>{{card.description}}</p></div>
-               <div class="categoria p-2 bg-light border-bottom">Категория: <span>{{card.categories.first}}</span></div>
+               <div class="categoria p-2 bg-light border-bottom">Категория: 
+               {% for cat in card.categories.all %}
+               <span>{{cat}} ,</span>
+               {% endfor %}
+            </div>
               
-            {% include 'components/order/select_size.html' %}
-            {% include 'components/order/review_form.html' %}
+            <!-- {% include 'components/order/select_size.html' %}
+             -->
+            {% if request.user.is_authenticated %}
+                {% include 'components/order/review_form.html' %}
+                
+            {% endif %}
+                
 
       <div class="support p-2 bg-light border-bottom">КАК СДЕЛАТЬ ЗАКАЗ?
 

@@ -1,0 +1,16 @@
+ 
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+            
+      <div class="title-articul border-bottom border-dark">
+        <h1 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{card.title}}</h1>
+        <p style="font-size: x-small; font-family: 'Courier New', Courier, monospace;">{{card.id}}</p>
+      </div>
+     {% include 'components/order/product_info.html' %}
+      <section class="content-section" >
+        <p>Похожие товары</p>
+        {% include 'components/card/card.html' %}
+    </section>
+{% endblock content %}
+      

@@ -1,5 +1,5 @@
 {% load static %}
-  {% comment %} <div class="card">
+  <!-- {% comment %} <div class="card">
     <a href="{{ card.get_absolute_url }}"><img style="height: 300px; background-size: cover; background-position: center;" src="{{card.product_media.first.image.url}}" alt="" width="100%"></a>
     <div class="desc">
         <span>{{card.description}}</span>
@@ -16,33 +16,24 @@
     <div class="icon-container">
         <img width="18px" class="cart-icon" src="{% static 'image/icons/shopping-cart.png' %}" alt="Icon">
     </div>
-</div> {% endcomment %}
+</div> {% endcomment %} -->
 
-<section class="product_section layout_padding">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Our Products
-        </h2>
-      </div>
+  
+<!-- <div class="card">
       <div class="row">
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
-              <img src="{{ books.books_media.first.image.url}}" alt="">
-              <a href="" class="{{books.get_ablosute_url}}">
-                <span>
-                  Add To Cart
-                </span>
-              </a>
+              <img src="{{ card.books_media.first.image.url}}" alt="" style="width: 80%;height: 90%;">
+              
             </div>
             <div class="detail-box">
               <h5>
-                {{books.title}}
+                {{card.title}}
               </h5>
               <div class="product_info">
                 <h5>
-                  <span>$</span> {{books.price}}
+                  <span>$</span> {{card.price}}
                 </h5>
                 <div class="star_container">
                   <i class="fa fa-star" aria-hidden="true"></i>
@@ -55,5 +46,59 @@
             </div>
           </div>
         </div>
-        
-  </section>
+    </div> 
+  </div> -->
+
+
+
+  <!-- <div class="card">
+    <a href="" class="{{card.get_ablosute_url}}">
+      <img style="height: 300px; background-size: cover; background-position: center;" src="" alt="" width="100%"></a>      
+    </a>
+    
+    <div class="desc">
+        <span>{{card.description}}</span>
+        <a style="text-decoration: none;" href="{{ cards.get_absolute_url }}"><h5>{{card.title}}</h5></a>
+        <div class="star-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+        <h4 >{{card.price}} сом</h4>
+    </div>
+    <div class="icon-container">
+        <img width="18px" class="cart-icon" src="{% static 'image/icons/shopping-cart.png' %}" alt="Icon">
+    </div>
+</div> -->
+
+<div class="col-sm-6 col-lg-4">
+  <div class="box">
+    <div class="img-box">
+      <img src="{{card.books_media.first.image.url}}" alt="" style="width: 200px;">
+      <a href="{{ card.get_absolute_url }}" class="add_cart_btn">
+        <span>
+           подробное
+        </span>
+      </a>
+    </div>
+    <div class="detail-box">
+      <h5>
+        {{card.title}}
+      </h5>
+      <div class="product_info">
+        <h5>
+          <span>$</span> {{card.price}}
+        </h5>
+        <div class="star_container">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

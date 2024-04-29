@@ -16,5 +16,7 @@ urlpatterns = [
     path('product/about/', v.AboutView.as_view(), name='about'),
     path('product/',v.ProductView.as_view(),name='product'),
     path('testimonial/',v.TestimonialView.as_view(),name='testimonial'),
-    path('whyus',v.WhyView.as_view(),name='whyus')
+    path('whyus',v.WhyView.as_view(),name='whyus'),
+    path('product/show/<int:pk>', v.ShowProduct.as_view(), name='show_products'),
+    path('product/add/review/', v.AddReviewView.as_view(), name='add_review'),
 ]

@@ -18,6 +18,7 @@ choices_review = (
 class Product(models.Model):
     title = models.CharField(max_length=255, verbose_name='название')
     description = models.TextField(verbose_name='опесание')
+    authors = models.ManyToManyField('product.Author', verbose_name='авторы')
     price = models.PositiveIntegerField(verbose_name='цена')
     categories = models.ManyToManyField('product.Category', verbose_name='категории')
     # rating = models.IntegerField(verbose_name='рейтинг', default=0)
@@ -28,7 +29,7 @@ class Product(models.Model):
         verbose_name_plural = 'Продукты'
 
     def get_absolute_url(self):
-        return reverse('product', kwargs={'pk': self.pk})
+        return reverse('show_products', kwargs={'pk': self.pk})
     
     def __str__(self):
         return f'{self.title}'
@@ -62,7 +63,7 @@ class ProductMedia(models.Model):
     # TODO: Define fields here
 
     image = models.ImageField(verbose_name='фото', upload_to='image/product/')
-    product = models.ForeignKey('product.Product', on_delete=models.CASCADE, related_name='product_media')
+    product = models.ForeignKey('product.Product', on_delete=models.CASCADE, related_name='books_media')
     
     
     
@@ -101,24 +102,24 @@ class Category(models.Model):
 #         return f'{self.title}' # 
     
 
-# class Review(models.Model):
-#     """Model definition for Review."""
-#     text = models.TextField(verbose_name='Отзыв')
-#     assesment = models.CharField(verbose_name='Оценка', max_length=50, choices=choices_review)
-#     product = models.ForeignKey('product.Product', on_delete=models.CASCADE, verbose_name='продукт')
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
-#     created = models.DateTimeField(verbose_name='дата', auto_now_add=True)
-#     # : Define fields here
+class Review(models.Model):
+     """Model definition for Review."""
+     text = models.TextField(verbose_name='Отзыв')
+     assesment = models.CharField(verbose_name='Оценка', max_length=50, choices=choices_review)
+     product = models.ForeignKey('product.Product', on_delete=models.CASCADE, verbose_name='продукт')
+     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
+     created = models.DateTimeField(verbose_name='дата', auto_now_add=True)
+     # : Define fields here
 
-#     class Meta:
+     class Meta:
         """Meta definition for Review."""
 
-    #     verbose_name = 'Review'
-    #     verbose_name_plural = 'Reviews'
+        verbose_name = 'Review'
+        verbose_name_plural = 'Reviews'
 
-    # def __str__(self):
+     def __str__(self):
     #     """Unicode representation of Review."""
-    #     return f'{self.user}'
+         return f'{self.user}'
 
 
 class Author(models.Model):
