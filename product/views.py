@@ -4,13 +4,13 @@ from django.db.models.query import QuerySet
 from django.forms import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-# from django.contrib.auth.views import LoginView
-from product.forms import  ReviewForm, UserCreationForm, RegisterUser
-# from product.models import Review,  Product
-# # from product.utils import search_product
-# from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
+from product.forms import  ReviewForm, UserCreationForm, RegisterUser, LoginForm
+from product.models import Review,  Product
+from product.utils import search_product
+from django.urls import reverse_lazy
 from django.contrib.auth.models import User
-from django.contrib.auth import login #, authenticate, logout
+from django.contrib.auth import login, authenticate, logout
 from django.views import generic
 
 # # Create your views here.
@@ -42,7 +42,7 @@ class IndexView(generic.ListView):
 # #         return context
     
 class AddReviewView(generic.CreateView):
-    template_name = 'pages/show_product.html'
+    template_name = 'pages/products.html'
     form_class = ReviewForm
     
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
@@ -62,34 +62,34 @@ class AddReviewView(generic.CreateView):
 # #         return cards
 
 
-# # class SearchProductView(generic.ListView):
-# #     template_name = 'pages/clothes.html'
-# #     context_object_name = 'cards'
+class SearchProductView(generic.ListView):
+    template_name = 'pages/products.html'
+    context_object_name = 'cards'
     
-# #     def get_queryset(self) -> QuerySet[Any]:
-# #         cards = search_product(self.request)
-# #         return cards
+    def get_queryset(self) -> QuerySet[Any]:
+        cards = search_product(self.request)
+        return cards
     
 
-# class UserRegisterView(generic.CreateView):
-#     template_name = 'pages/login.html'  
-#     form_class = RegisterForm
+class UserRegisterView(generic.CreateView):
+    template_name = 'pages/login.html'  
+    form_class = RegisterUser
     
-#     def form_valid(self, form: BaseModelForm) -> HttpResponse:
-#         user = form.save()
-#         login(self.request, user)
-#         return redirect('index')
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        user = form.save()
+        login(self.request, user)
+        return redirect('index')
 
-# def logout_user(request):
-#     logout(request)
-#     return redirect('index')
+def logout_user(request):
+    logout(request)
+    return redirect('index')
 
-# class UserLoginView(LoginView):
-#     form_class = LoginForm
-#     template_name = 'pages/login.html'
+class UserLoginView(LoginView):
+    form_class = LoginForm
+    template_name = 'pages/login.html'
     
-#     def get_success_url(self) -> str:
-        # return reverse_lazy('index')
+    def get_success_url(self) -> str:
+        return reverse_lazy('index')
 class AboutView(generic.ListView):
     template_name = 'pages/about.html'
     
@@ -133,7 +133,7 @@ class TestimonialView(generic.ListView):
     
 class ProductView(generic.ListView):
     model = Product
-    template_name = 'pages/show_product.html'
+    template_name = 'pages/products.html'
     context_object_name = 'cards'
     
     # form_class = BookForm
@@ -153,7 +153,7 @@ class ProductView(generic.ListView):
 
 class ShowProduct(generic.DetailView,generic.CreateView):
     model = Product
-    template_name = 'pages/product_more_info.html'
+    template_name = 'pages/show_products.html'
     context_object_name = 'card'
     form_class = ReviewForm
     

@@ -7,9 +7,9 @@ urlpatterns = [
     # path('product/show/<int:pk>', v.ShowProductView.as_view(), name='show_product'),
     path('product/add/review/', v.AddReviewView.as_view(), name='add_review'),
     # path('product/search/', v.SearchProductView.as_view(), name='search'),
-    # path('login/', v.UserLoginView.as_view(), name='login'),
-    # path('register/', v.UserRegisterView.as_view(), name='register'),
-    # path('logout/', v.logout_user, name='logout'),
+    path('login/', v.UserLoginView.as_view(), name='login'),
+    path('register/', v.UserRegisterView.as_view(), name='register'),
+    path('logout/', v.logout_user, name='logout'),
 
 
     # path('', v.index, name='index'),
