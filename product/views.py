@@ -60,16 +60,28 @@ class AddReviewView(generic.CreateView):
 # #     def get_queryset(self) -> QuerySet[Any]:
 # #         cards = Product.objects.all().order_by('-id')
 # #         return cards
-
-
 class SearchProductView(generic.ListView):
     template_name = 'pages/products.html'
-    context_object_name = 'cards'
+    context_object_name = 'card'
+    
+    
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Поиск'
+        return context
     
     def get_queryset(self) -> QuerySet[Any]:
         cards = search_product(self.request)
         return cards
     
+# def search(request):
+#     template_name = 'pages/clothes.html'
+#     cards = search_product(request)
+#     context = {
+#         'title':"Одежда",
+#         'cards':cards        
+#     }
+#     return render(request, template_name ,context)
 
 class UserRegisterView(generic.CreateView):
     template_name = 'pages/login.html'  
@@ -132,6 +144,7 @@ class TestimonialView(generic.ListView):
         return context
     
 class ProductView(generic.ListView):
+    paginate_by = 2
     model = Product
     template_name = 'pages/products.html'
     context_object_name = 'cards'
@@ -184,3 +197,34 @@ class RegisterU(generic.CreateView):
         login(self.request,user)
         return redirect('index')
     
+
+
+
+class Profile(generic.ListView):
+    template_name = 'pages/droptown/profile.html'
+    context_object_name = 'cards'
+
+
+    def get_queryset(self) -> QuerySet[Any]:
+        cards = Product.objects.all().order_by('-id')
+        return cards
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["title"] = 'Профиль'
+        return context
+    
+
+class Order(generic.ListView):
+    template_name = 'pages/droptown/corzina.html'
+    context_object_name = 'cards'
+
+
+    def get_queryset(self) -> QuerySet[Any]:
+        cards = Product.objects.all().order_by('-id')
+        return cards
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["title"] = 'Корзина'
+        return context

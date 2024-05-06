@@ -5,12 +5,30 @@
 {% include 'components/card/slider.html' %}
 
 <!-- product section -->
+<section class="product_section layout_padding">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>
+        Our Products
+      </h2>
+      <div class="row">
 
-{% include 'components/card/group_card.html' %}
+        {% for card in cards %}
+                
+        {% include 'components/card/card.html' %}
+      
+        {% endfor %}
+      </div>
+    </div>
 
-<!-- end product section -->
+  
 
-<!-- about section -->
+    <section class="pagination-section">
+      {% include 'components/pagination/paginator.html' %}
+  </section
+
+
+ about section -->
 
 <section class="about_section">
   <div class="container-fluid  ">
@@ -19,12 +37,11 @@
         <div class="detail-box pr-md-3">
           <div class="heading_container">
             <h2>
-              We Provide Best For You
+             
             </h2>
           </div>
           <p>
-            Totam architecto rem beatae veniam, cum officiis adipisci soluta perspiciatis ipsa, expedita maiores quae accusantium. Animi veniam aperiam, necessitatibus mollitia ipsum id optio ipsa odio ab facilis sit labore officia!
-            Repellat expedita, deserunt eum soluta rem culpa. Aut, necessitatibus cumque. Voluptas consequuntur vitae aperiam animi sint earum, ex unde cupiditate, molestias dolore quos quas possimus eveniet facilis magnam? Vero, dicta.
+            {{cards.description|truncatechars:50}}
           </p>
           <a href="">
             Read More
@@ -48,7 +65,7 @@
   <div class="container">
     <div class="heading_container heading_center">
       <h2>
-        Why Choose Us
+        Почему мы?  
       </h2>
     </div>
     <div class="row">
@@ -59,10 +76,10 @@
           </div>
           <div class="detail-box">
             <h5>
-              Fast Delivery
+              Быстрая доставка
             </h5>
             <p>
-              variations of passages of Lorem Ipsum available
+              доступны вариации отрывков Lorem Ipsum
             </p>
           </div>
         </div>
@@ -74,10 +91,10 @@
           </div>
           <div class="detail-box">
             <h5>
-              Free Shiping
+              Бесплатная доставка
             </h5>
             <p>
-              variations of passages of Lorem Ipsum available
+              доступны вариации отрывков Lorem Ipsum
             </p>
           </div>
         </div>
@@ -89,10 +106,10 @@
           </div>
           <div class="detail-box">
             <h5>
-              Best Quality
+              Лучшее качество
             </h5>
             <p>
-              variations of passages of Lorem Ipsum available
+              доступны вариации отрывков Lorem Ipsum
             </p>
           </div>
         </div>

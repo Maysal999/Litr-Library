@@ -16,53 +16,36 @@
             </span>
           </a>
         </div>
-        <from class="search_form">
-          <input type="text" class="form-control" placeholder="Search here...">
-          <button class="" type="submit">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </button>
-        </from>
-        <div class="user_option_box">
-          <a href="" class="account-link">
-            <i class="fa fa-user" aria-hidden="true"></i>
+        
+        {% include 'components/header/search_form.html' %}
 
             
             {% if not  request.user.is_authenticated %}
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'login' %}">Войти</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'register' %}">Зарегистрироваться</a>
-    </li>
-    {% else %}
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {{request.user.username}}
-      </a>
-      <ul class="dropdown-menu bg-dark dropdown-menu-dark" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
-      </ul>
-    </li>
-    {% endif %}
-            <span>
-              <div class="btn-group">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                {{request.user}}
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                  <li><a class="dropdown-item" href="#">Выйты</a></li>
-                </ul>
-              </div>
-              
-           </span>
-            
-          </a>
-          <a href="" class="cart-link">
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Зарегистрироваться</a>
+                              </li>
+            {% else %}
+            <li class="user_accaunt nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{request.user.username}}
+              </a>
+              <ul class="dropdown-menu bg-dark dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{% url 'profile' %}">Админ панел</a></li>
+
+                <li><a class="dropdown-item" href="{% url 'order' %}">Корзина</a></li>
+
+                <li><hr class="dropdown-divider"></li>
+                
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
+              </ul>
+            </li>
+            {% endif %}
+                  
+    
+          <a href="{% url 'order' %}" class="card_corzina cart-link">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             <span>
               Cart

@@ -1,4 +1,5 @@
 {% load static %}
+{% load my_tag %}
 <!DOCTYPE html>
 <html>
 
@@ -26,6 +27,9 @@
   <!-- fonts style -->
   <link href="{% static 'https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap' %}" rel="stylesheet"> <!-- range slider -->
 
+  <link rel="stylesheet" href="{% static 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' %}">
+
   <!-- font awesome style -->
   <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
 
@@ -33,6 +37,7 @@
   <link href="{% static 'css/style.css' %}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+  <!-- <link rel="stylesheet" href="'{% static 'css/corzina.css' %}"> -->
 
 </head>
 
@@ -49,6 +54,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
       <!-- jQery -->
     <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- bootstrap js -->
     <script src="{% static 'js/bootstrap.js' %}"></script>
   <!-- custom js -->

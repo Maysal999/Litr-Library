@@ -18,13 +18,23 @@ class ReviewForm(forms.ModelForm):
 #     class Meta:
 #         model = User
 #         fields = ('username', 'email', 'password1', 'password2')
-
 class LoginForm(AuthenticationForm):
+    username = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class':'form-control'}),label='Имя пользователя')
+    password = forms.CharField(max_length=255, widget=forms.PasswordInput(attrs={'class':'form-control'}))
     class Meta:
         model = User
         fields = ('username', 'password')
 
+        widgets = {
+            'username':forms.TextInput(attrs={'class':'form-control'}),
+            'password':forms.PasswordInput(attrs={'class':'form-control'})
+        }
 
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if username.isupper():
+            # raise ValidationError('Имя пользователя должно быть в нижнем регистре!')
+            return username
 # class BookForm(forms.ModelForm):
 
 #     books = forms.BaseForm(data=Book)
@@ -35,6 +45,11 @@ class LoginForm(AuthenticationForm):
 
 
 class RegisterUser(UserCreationForm):
+    email = forms.EmailField(max_length=50,widget=forms.EmailInput(attrs={'class' : 'abc form-control', 'id' : 'exampleFormControlInput1'}),label='Ваша имя')
+    username  = forms.CharField(max_length=50,widget=forms.TextInput(attrs={'class' : 'abc form-control', 'id' : 'exampleFormControlInput1'}),label='ваша эмайл')
+    password1  = forms.CharField(widget=forms.PasswordInput(attrs={'class' : 'abc form-control', 'id' : 'inputPassword'}),label='пароль')
+    password2  = forms.CharField(widget=forms.PasswordInput(attrs={'class' : 'abc form-control', 'id' : 'inputPassword'}),label='подвердения пароля')
+  
     class Meta:
         model = User
-        fields = ('username','password1','password2')
+        fields = ('username','email','password1','password2')

@@ -8,7 +8,19 @@ body {
 .layout_padding {
   padding: 90px 0;
 }
+.error_message {
+  color: red;
+}
+.pagination {
+  width: 100px;
+  margin: auto;
 
+}
+.pagination {
+  width: 100px;
+  margin: auto;
+
+}
 .layout_padding2 {
   padding: 75px 0;
 }
@@ -91,6 +103,16 @@ a:focus {
 
 .sub_page .hero_area {
   min-height: auto;
+}
+.card_corzina {
+  margin-left: -200px;
+}
+.user_accaunt {
+  margin-left: 500px;
+}
+
+#exampleFormControlInput1{
+  margin: 100px;
 }
 
 .sub_page .about_section {
